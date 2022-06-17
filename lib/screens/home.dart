@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/todo_list.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -9,16 +11,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("My Todo List"),
       ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text("${index + 1}"),
-            subtitle: Text("Subtitle"),
-            trailing: Icon(Icons.chevron_right),
-          );
-        },
-      ),
+      body: TodoList(),
     );
   }
 }
