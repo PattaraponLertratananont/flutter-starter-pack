@@ -32,19 +32,23 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              Navigator.pushNamed(context, AddTodoScreen.routeName).then(
-                (value) {
-                  if (value == null) return;
-                  value as TodoModel;
-                  print(value.title);
-                  print(value.description);
-                },
-              );
+              Navigator.pushNamed(
+                context,
+                AddTodoScreen.routeName,
+              ).then(handleValueAfterCloseScreen);
             },
           ),
         ],
       ),
       body: TodoList(todoList: todoList),
     );
+  }
+
+  void handleValueAfterCloseScreen(Object? value) {
+    if (value == null) return;
+    value as TodoModel;
+    setState(() {
+      todoList.add(value);
+    });
   }
 }
