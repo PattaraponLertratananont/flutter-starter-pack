@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var todoListReversed = todoList.reversed.toList();
     return Scaffold(
       appBar: AppBar(
         title: Text("My Todo List"),
@@ -40,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: TodoList(todoList: todoList),
+      body: TodoList(todoList: todoListReversed),
     );
   }
 
