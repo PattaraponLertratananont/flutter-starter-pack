@@ -15,18 +15,17 @@ class DetailScreen extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as DetailScreenArguments;
 
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("Detail Screen"),
-          Text("Title is ${arguments.title}"),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context, arguments.title);
-            },
-            child: Text("Back to home"),
-          )
-        ],
+      appBar: AppBar(
+        title: Text(arguments.title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Detail Screen"),
+            Text("Title is ${arguments.title}"),
+          ],
+        ),
       ),
     );
   }
