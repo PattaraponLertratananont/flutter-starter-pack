@@ -22,7 +22,7 @@ class DetailScreen extends StatelessWidget {
           Text("Title is ${arguments.title}"),
           TextButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pop(context, arguments.title);
             },
             child: Text("Back to home"),
           )

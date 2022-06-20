@@ -20,6 +20,10 @@ class TodoItem extends StatelessWidget {
           context,
           DetailScreen.routeName,
           arguments: DetailScreenArguments(title: title),
+        ).then(
+          (value) {
+            print("TodoItem title is ${value}");
+          },
         );
       },
     );
