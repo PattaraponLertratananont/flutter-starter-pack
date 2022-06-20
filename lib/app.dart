@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/screens/detail.dart';
 import 'package:my_app/screens/home.dart';
 
 class MyApp extends StatelessWidget {
@@ -6,8 +7,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: HomeScreen(),
+      routes: <String, WidgetBuilder>{
+        DetailScreen.routeName: (context) => DetailScreen()
+      },
     );
   }
 }

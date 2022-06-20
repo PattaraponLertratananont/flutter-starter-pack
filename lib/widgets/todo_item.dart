@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/screens/detail.dart';
 
 class TodoItem extends StatelessWidget {
   final int index;
@@ -9,10 +10,18 @@ class TodoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var title = "${index + 1}";
     return ListTile(
-      title: Text("${index + 1}"),
+      title: Text(title),
       subtitle: Text("Subtitle"),
       trailing: Icon(Icons.chevron_right),
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          DetailScreen.routeName,
+          arguments: DetailScreenArguments(title: title),
+        );
+      },
     );
   }
 }
