@@ -21,7 +21,21 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
         child: Column(
           children: [
-            TextField(controller: titleController),
+            TextField(
+              controller: titleController,
+              decoration: InputDecoration(
+                labelText: "Title",
+                labelStyle: TextStyle(
+                  color: Colors.brown,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 18,
+                ),
+                hintText: "This is placeholder.",
+                enabledBorder: OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(),
+              ),
+              cursorColor: Colors.red,
+            ),
             const SizedBox(height: 24),
             TextField(controller: descriptionController),
             const SizedBox(height: 24),
