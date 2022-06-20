@@ -1,29 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/models/todo.dart';
 import 'package:my_app/screens/detail.dart';
 
 class TodoItem extends StatelessWidget {
-  final int index;
+  final TodoModel todo;
   const TodoItem({
     Key? key,
-    required this.index,
+    required this.todo,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var title = "${index + 1}";
     return ListTile(
-      title: Text(title),
-      subtitle: Text("Subtitle"),
+      title: Text(todo.title),
+      subtitle: Text(todo.description),
       trailing: Icon(Icons.chevron_right),
       onTap: () {
         Navigator.pushNamed(
           context,
           DetailScreen.routeName,
-          arguments: DetailScreenArguments(title: title),
-        ).then(
-          (value) {
-            print("TodoItem title is ${value}");
-          },
+          arguments: DetailScreenArguments(title: todo.title),
         );
       },
     );
