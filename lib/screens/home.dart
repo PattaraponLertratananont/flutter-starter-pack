@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/screens/add_todo.dart';
 
+import '../models/todo.dart';
 import '../widgets/todo_list.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -15,7 +16,14 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              Navigator.pushNamed(context, AddTodoScreen.routeName);
+              Navigator.pushNamed(context, AddTodoScreen.routeName).then(
+                (value) {
+                  if(value == null) return;
+                  value as TodoModel;
+                  print(value.title);
+                  print(value.description);
+                },
+              );
             },
           ),
         ],

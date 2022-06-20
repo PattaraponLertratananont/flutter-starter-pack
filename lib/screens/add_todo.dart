@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/models/todo.dart';
 
 class AddTodoScreen extends StatefulWidget {
   static const routeName = "/add-todo";
@@ -42,8 +43,13 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
             ElevatedButton(
               child: Text("Submit"),
               onPressed: () {
-                print(titleController.text);
-                print(descriptionController.text);
+                Navigator.pop(
+                  context,
+                  TodoModel(
+                    title: titleController.text,
+                    description: descriptionController.text,
+                  ),
+                );
               },
             ),
           ],
