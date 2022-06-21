@@ -12,6 +12,8 @@ class AddTodoScreen extends StatefulWidget {
 class _AddTodoScreenState extends State<AddTodoScreen> {
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,39 +22,61 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-        child: Column(
-          children: [
-            TextField(
-              controller: titleController,
-              decoration: InputDecoration(
-                labelText: "Title",
-                labelStyle: TextStyle(
-                  color: Colors.brown,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 18,
-                ),
-                hintText: "This is placeholder.",
-                enabledBorder: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(),
-              ),
-              cursorColor: Colors.red,
-            ),
-            const SizedBox(height: 24),
-            TextField(controller: descriptionController),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              child: Text("Submit"),
-              onPressed: () {
-                Navigator.pop(
-                  context,
-                  TodoModel(
-                    title: titleController.text,
-                    description: descriptionController.text,
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: titleController,
+                decoration: InputDecoration(
+                  labelText: "Title",
+                  labelStyle: TextStyle(
+                    color: Colors.brown,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 18,
                   ),
-                );
-              },
-            ),
-          ],
+                  hintText: "This is placeholder.",
+                  enabledBorder: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(),
+                  errorBorder: OutlineInputBorder(),
+                ),
+                cursorColor: Colors.red,
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter title.";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(height: 24),
+              TextFormField(
+                controller: descriptionController,
+                validator: (String? desc) {
+                  if (desc == null || desc.isEmpty) {
+                    return "Please enter description.";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                child: Text("Submit"),
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    Navigator.pop(
+                      context,
+                      TodoModel(
+                        title: titleController.text,
+                        description: descriptionController.text,
+                      ),
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
