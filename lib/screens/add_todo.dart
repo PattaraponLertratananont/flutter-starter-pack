@@ -41,24 +41,12 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
                   errorBorder: OutlineInputBorder(),
                 ),
                 cursorColor: Colors.red,
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please enter title.";
-                  } else {
-                    return null;
-                  }
-                },
+                validator: validateTitleTodo,
               ),
               const SizedBox(height: 24),
               TextFormField(
                 controller: descriptionController,
-                validator: (String? desc) {
-                  if (desc == null || desc.isEmpty) {
-                    return "Please enter description.";
-                  } else {
-                    return null;
-                  }
-                },
+                validator: validateDescriptionTodo,
               ),
               const SizedBox(height: 24),
               ElevatedButton(
@@ -80,5 +68,21 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
         ),
       ),
     );
+  }
+
+  String? validateTitleTodo(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Please enter title.";
+    } else {
+      return null;
+    }
+  }
+
+  String? validateDescriptionTodo(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Please enter description.";
+    } else {
+      return null;
+    }
   }
 }
