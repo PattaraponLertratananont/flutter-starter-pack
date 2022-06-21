@@ -17,11 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    TodoService().getTodos().then((value) {
-      setState(() {
-        todoList = value;
-      });
-    });
+    getTodoList();
     super.initState();
   }
 
@@ -50,8 +46,16 @@ class _HomeScreenState extends State<HomeScreen> {
   void handleValueAfterCloseScreen(Object? value) {
     if (value == null) return;
     value as TodoModel;
-    setState(() {
-      todoList.add(value);
+    TodoService().addTodo(value).then((_) {
+      getTodoList();
+    });
+  }
+
+  void getTodoList() {
+    TodoService().getTodos().then((value) {
+      setState(() {
+        todoList = value;
+      });
     });
   }
 }

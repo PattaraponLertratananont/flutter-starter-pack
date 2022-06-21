@@ -14,4 +14,11 @@ class TodoService {
     }
     return todos;
   }
+
+  Future<void> addTodo(TodoModel data) async {
+    var url = Uri.https("tryapi-tawny.vercel.app", "/todos");
+    var body = jsonEncode(data);
+    await http
+        .post(url, body: body, headers: {"Content-type": "application/json"});
+  }
 }
