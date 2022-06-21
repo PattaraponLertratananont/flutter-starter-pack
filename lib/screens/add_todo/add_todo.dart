@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/models/todo.dart';
+import 'package:my_app/screens/add_todo/add_todo_controller.dart';
 
 class AddTodoScreen extends StatefulWidget {
   static const routeName = "/add-todo";
@@ -10,6 +11,7 @@ class AddTodoScreen extends StatefulWidget {
 }
 
 class _AddTodoScreenState extends State<AddTodoScreen> {
+  final addTodoController = AddTodoController();
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -41,12 +43,12 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
                   errorBorder: OutlineInputBorder(),
                 ),
                 cursorColor: Colors.red,
-                validator: validateTitleTodo,
+                validator: addTodoController.validateTitleTodo,
               ),
               const SizedBox(height: 24),
               TextFormField(
                 controller: descriptionController,
-                validator: validateDescriptionTodo,
+                validator: addTodoController.validateDescriptionTodo,
               ),
               const SizedBox(height: 24),
               ElevatedButton(
@@ -68,21 +70,5 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
         ),
       ),
     );
-  }
-
-  String? validateTitleTodo(String? value) {
-    if (value == null || value.isEmpty) {
-      return "Please enter title.";
-    } else {
-      return null;
-    }
-  }
-
-  String? validateDescriptionTodo(String? value) {
-    if (value == null || value.isEmpty) {
-      return "Please enter description.";
-    } else {
-      return null;
-    }
   }
 }
