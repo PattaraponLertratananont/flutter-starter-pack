@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class DetailScreenArguments {
   final String title;
-  DetailScreenArguments({required this.title});
+  final String description;
+  DetailScreenArguments({required this.title, required this.description});
 }
 
 class DetailScreen extends StatelessWidget {
@@ -24,6 +25,7 @@ class DetailScreen extends StatelessWidget {
           children: [
             Text("Detail Screen"),
             Text("Title is ${arguments.title}"),
+            Text("Title is ${arguments.description}"),
           ],
         ),
       ),

@@ -19,7 +19,8 @@ class TodoItem extends StatelessWidget {
         Navigator.pushNamed(
           context,
           DetailScreen.routeName,
-          arguments: DetailScreenArguments(title: todo.title),
+          arguments: DetailScreenArguments(
+              title: todo.title, description: todo.description),
         );
       },
     );
